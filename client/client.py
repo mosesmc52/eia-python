@@ -3,7 +3,7 @@ import textwrap
 
 
 class EIAClient(object):
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, version: int):
 
         self.api_key = None
         if api_key is not None:
@@ -24,3 +24,14 @@ class EIAClient(object):
                     website at https://www.eia.gov/opendata/register.php/"""
                 )
             )
+
+        self.host = "api.eia.gov"
+        self.version = version
+
+        self.oil = None
+
+    def _fetch(self, endpoint):
+        pass
+
+    def _parse(self, raw_data):
+        pass

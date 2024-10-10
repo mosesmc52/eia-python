@@ -6,6 +6,10 @@ class BaseSource(ABC):
         self.client = client
 
     @abstractmethod
+    def transport(self):
+        pass
+
+    @abstractmethod
     def reserves(self):
         pass
 
@@ -14,11 +18,15 @@ class BaseSource(ABC):
         pass
 
     @abstractmethod
-    def stocks(self):
+    def storage(self):
         pass
 
     @abstractmethod
-    def price(self):
+    def spot_prices(self):
+        pass
+
+    @abstractmethod
+    def futures_price(self):
         pass
 
     @abstractmethod
@@ -30,11 +38,5 @@ class BaseSource(ABC):
         pass
 
     @abstractmethod
-    def generation(self):
-        pass
-
-    def _fetch(self, endpoint):
-        pass
-
-    def _parse(self, raw_data):
+    def electricity_generation(self):
         pass
