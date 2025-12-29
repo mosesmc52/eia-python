@@ -16,10 +16,12 @@ def retry_request(
 
     while retries < max_retries:
         try:
-            response = requests.get(url, headers=headers, params=params)
+
+            r = requests.get(url, headers=headers, params=params, timeout=30)
             # Check if the request was successful
-            response.raise_for_status()
-            return response
+            r.raise_for_status()
+
+            return r
         except RequestException as e:
             print(f"Request failed: {str(e)}")
 
