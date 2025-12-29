@@ -43,7 +43,7 @@ class BaseSource(ABC):
         pass
 
     @abstractmethod
-    def export(self):
+    def exports(self):
         pass
 
     @abstractmethod
@@ -63,7 +63,7 @@ class BaseSource(ABC):
         pass
 
     @abstractmethod
-    def futures_price(self):
+    def futures_prices(self):
         pass
 
     @abstractmethod
@@ -72,8 +72,4 @@ class BaseSource(ABC):
 
     @abstractmethod
     def processing(self):
-        pass
-
-    @abstractmethod
-    def electricity_generation(self):
         pass

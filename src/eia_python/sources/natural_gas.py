@@ -17,6 +17,199 @@ class NaturalGas(BaseSource):
         "pacific": "NW2_EPG0_SWO_R35_BCF",
     }
 
+    _PRODUCTION_SERIES_BY_STATE = {
+        "al": "NA1160_SAL_2",
+        "ak": "NA1160_SAK_2",
+        "az": "NA1160_SAZ_2",
+        "ar": "NA1160_SAR_2",
+        "ca": "NA1160_SCA_2",
+        "co": "NA1160_SCO_2",
+        "fl": "NA1160_SFL_2",
+        "il": "NA1160_SIL_2",
+        "in": "NA1160_SIN_2",
+        "ks": "NA1160_SKS_2",
+        "ky": "NA1160_SKY_2",
+        "la": "NA1160_SLA_2",
+        "md": "NA1160_SMD_2",
+        "mi": "NA1160_SMI_2",
+        "mo": "NA1160_SMO_2",
+        "ms": "NA1160_SMS_2",
+        "mt": "NA1160_SMT_2",
+        "ne": "NA1160_SNE_2",
+        "nv": "NA1160_SNV_2",
+        "nm": "NA1160_SNM_2",
+        "ny": "NA1160_SNY_2",
+        "nd": "NA1160_SND_2",
+        "oh": "NA1160_SOH_2",
+        "ok": "NA1160_SOK_2",
+        "or": "NA1160_SOR_2",
+        "pa": "NA1160_SPA_2",
+        "sd": "NA1160_SSD_2",
+        "tn": "NA1160_STN_2",
+        "tx": "NA1160_STX_2",
+        "ut": "NA1160_SUT_2",
+        "va": "NA1160_SVA_2",
+        "wv": "NA1160_SWV_2",
+        "united_states_total": "N9070US2",
+    }
+
+    _CONSUMPTION_SERIES_BY_STATE = {
+        "al": "N9140AL2",
+        "ak": "N9140AK2",
+        "az": "N9140AZ2",
+        "ar": "N9140AR2",
+        "ca": "N9140CA2",
+        "co": "N9140CO2",
+        "ct": "N9140CT2",
+        "de": "N9140DE2",
+        "fl": "N9140FL2",
+        "ga": "N9140GA2",
+        "hi": "N9140HI2",
+        "id": "N9140ID2",
+        "il": "N9140IL2",
+        "in": "N9140IN2",
+        "ia": "N9140IA2",
+        "ks": "N9140KS2",
+        "ky": "N9140KY2",
+        "la": "N9140LA2",
+        "me": "N9140ME2",
+        "md": "N9140MD2",
+        "ma": "N9140MA2",
+        "mi": "N9140MI2",
+        "mn": "N9140MN2",
+        "ms": "N9140MS2",
+        "mo": "N9140MO2",
+        "mt": "N9140MT2",
+        "ne": "N9140NE2",
+        "nv": "N9140NV2",
+        "nh": "N9140NH2",
+        "nj": "N9140NJ2",
+        "nm": "N9140NM2",
+        "ny": "N9140NY2",
+        "nc": "N9140NC2",
+        "nd": "N9140ND2",
+        "oh": "N9140OH2",
+        "ok": "N9140OK2",
+        "or": "N9140OR2",
+        "pa": "N9140PA2",
+        "ri": "N9140RI2",
+        "sc": "N9140SC2",
+        "sd": "N9140SD2",
+        "tn": "N9140TN2",
+        "tx": "N9140TX2",
+        "ut": "N9140UT2",
+        "vt": "N9140VT2",
+        "va": "N9140VA2",
+        "wa": "N9140WA2",
+        "wv": "N9140WV2",
+        "wi": "N9140WI2",
+        "wy": "N9140WY2",
+        "united_states_total": "N9140US2",
+    }
+
+    _IMPORT_SERIES_BY_COUNTRY = {
+        # pipeline imports
+        "canada_pipeline": "N9102CN2",
+        "mexico_pipeline": "N9102MX2",
+        "united_states_pipeline_total": "N9102US2",
+        # LNG imports by country
+        "algeria": "N9103AG2",
+        "australia": "N9103AU2",
+        "brunei": "N9103BX2",
+        "egypt": "N9103EG2",
+        "equatorial_guinea": "NGM_EPG0_NUS-NEK_IML_MMCF",
+        "france": "NGM_EPG0_IML_NUS-NFR_MMCF",
+        "indonesia": "N9103ID2",
+        "jamaica": "NGM_EPG0_IML_NUS-NJM_MMCF",
+        "malaysia": "N9103MY2",
+        "nigeria": "N9103NG2",
+        "norway": "NGM_EPG0_NUS-NNO_IML_MMCF",
+        "oman": "N9103MU2",
+        "peru": "NGM_EPG0_NUS-NPE_IML_MMCF",
+        "qatar": "N9103QR2",
+        "trinidad_and_tobago": "N9103TD2",
+        "united_arab_emirates": "N9103UA2",
+        "united_kingdom": "NGM_EPG0_IML_NUS-NUK_MMCF",
+        "yemen": "NGM_EPG0_IML_NUS-NYE_MMCF",
+        # LNG aggregate
+        "united_states_lng_total": "N9103US2",
+        # compressed natural gas
+        "canada_compressed": "NGM_EPG0_INC_NUS-NCA_MMCF",
+        "united_states_compressed_total": "NGM_EPG0_INC_NUS-Z00_MMCF",
+    }
+
+    _EXPORT_SERIES_BY_COUNTRY = {
+        # pipeline exports
+        "canada_pipeline": "N9132CN2",
+        "mexico_pipeline": "N9132MX2",
+        "united_states_pipeline_total": "N9132US2",
+        # LNG exports by vessel
+        "argentina": "NGM_EPG0_EVE_NUS-NAT_MMCF",
+        "australia": "NGM_EPG0_EVE_NUS-NAU_MMCF",
+        "bahrain": "NGM_EPG0_EVE_NUS-NBA_MMCF",
+        "bangladesh": "NGM_EPG0_EVE_NUS-NBG_MMCF",
+        "barbados": "NGM_EPG0_EVE_NUS-NBB_MMCF",
+        "belgium": "NGM_EPG0_EVE_NUS-NBE_MMCF",
+        "brazil": "NGM_EPG0_EVE_NUS-NBR_MMCF",
+        "chile": "NGM_EPG0_EVE_NUS-NCI_MMCF",
+        "china": "NGM_EPG0_EVE_NUS-NCH_MMCF",
+        "colombia": "NGM_EPG0_EVE_NUS-NCO_MMCF",
+        "croatia": "NGM_EPG0_EVE_NUS-NHR_MMCF",
+        "dominican_republic": "NGM_EPG0_EVE_NUS-NDR_MMCF",
+        "egypt": "NGM_EPG0_EVE_NUS-NEG_MMCF",
+        "el_salvador": "NGM_EPG0_EVE_NUS-NES_MMCF",
+        "finland": "NGM_EPG0_EVE_NUS-NFL_MMCF",
+        "france": "NGM_EPG0_EVE_NUS-NFR_MMCF",
+        "germany": "NGM_EPG0_EVE_NUS-NGM_MMCF",
+        "greece": "NGM_EPG0_EVE_NUS-NGR_MMCF",
+        "haiti": "NGM_EPG0_EVE_NUS-NHA_MMCF",
+        "india": "NGM_EPG0_EVE_NUS-NIN_MMCF",
+        "indonesia": "NGM_EPG0_EVE_NUS-NID_MMCF",
+        "israel": "NGM_EPG0_EVE_NUS-NIS_MMCF",
+        "italy": "NGM_EPG0_EVE_NUS-NIT_MMCF",
+        "jamaica": "NGM_EPG0_EVE_NUS-NJM_MMCF",
+        "japan": "NGM_EPG0_EVE_NUS-NJA_MMCF",
+        "jordan": "NGM_EPG0_EVE_NUS-NJO_MMCF",
+        "kuwait": "NGM_EPG0_EVE_NUS-NKU_MMCF",
+        "lithuania": "NGM_EPG0_EVE_NUS-NLH_MMCF",
+        "malta": "NGM_EPG0_EVE_NUS-NM6_MMCF",
+        "mauritania": "NGM_EPG0_EVE_NUS-NMR_MMCF",
+        "mexico": "NGM_EPG0_EVE_NUS-NMX_MMCF",
+        "netherlands": "NGM_EPG0_EVE_NUS-NNL_MMCF",
+        "nicaragua": "NGM_EPG0_EVE_NUS-NNU_MMCF",
+        "pakistan": "NGM_EPG0_EVE_NUS-NPK_MMCF",
+        "panama": "NGM_EPG0_EVE_NUS-NPM_MMCF",
+        "philippines": "NGM_EPG0_EVE_NUS-NRP_MMCF",
+        "poland": "NGM_EPG0_EVE_NUS-NPL_MMCF",
+        "portugal": "NGM_EPG0_EVE_NUS-NPO_MMCF",
+        "russia": "NGM_EPG0_EVE_NUS-NRS_MMCF",
+        "senegal": "NGM_EPG0_EVE_NUS-NSG_MMCF",
+        "singapore": "NGM_EPG0_EVE_NUS-NSN_MMCF",
+        "south_korea": "NGM_EPG0_EVE_NUS-NKS_MMCF",
+        "spain": "NGM_EPG0_EVE_NUS-NSP_MMCF",
+        "taiwan": "NGM_EPG0_EVE_NUS-NTW_MMCF",
+        "thailand": "NGM_EPG0_EVE_NUS-NTH_MMCF",
+        "turkiye": "NGM_EPG0_EVE_NUS-NTU_MMCF",
+        "united_arab_emirates": "NGM_EPG0_EVE_NUS-NTC_MMCF",
+        "united_kingdom": "NGM_EPG0_EVE_NUS-NUK_MMCF",
+        # LNG aggregate
+        "united_states_lng_total": "N9133US2",
+        # truck exports
+        "canada_truck": "NGM_EPG0_ETR_NUS-NCA_MMCF",
+        "mexico_truck": "NGM_EPG0_ETR_NUS-NMX_MMCF",
+        "united_states_truck_total": "NGM_EPG0_ETR_NUS-Z00_MMCF",
+        # compressed natural gas exports
+        "canada_compressed": "NGM_EPG0_ENC_NUS-NCA_MMCF",
+        "united_states_compressed_total": "NGM_EPG0_ENC_NUS-Z00_MMCF",
+    }
+
+    _FUTURES_SERIES_BY_CONTRACT = {
+        1: "RNGC1",
+        2: "RNGC2",
+        3: "RNGC3",
+        4: "RNGC4",
+    }
+
     def storage(
         self,
         start: str,
@@ -26,20 +219,6 @@ class NaturalGas(BaseSource):
         length: int = 5000,
     ) -> Any:
         endpoint = "stor/wkly/data/"
-
-        if region == "all":
-            out: Dict[str, Any] = {}
-            for reg, series in self._STORAGE_SERIES_BY_REGION.items():
-                payload = self._fetch_data(
-                    start=start,
-                    endpoint=endpoint,
-                    series=series,
-                    frequency=frequency,
-                    offset=offset,
-                    length=length,
-                )
-                out[reg] = self.get_series(payload)
-            return out
 
         try:
             series = self._STORAGE_SERIES_BY_REGION[region]
@@ -70,26 +249,119 @@ class NaturalGas(BaseSource):
         )
         return self.get_series(payload)
 
-    def production(self):
-        raise NotImplementedError
+    def production(
+        self,
+        start: str,
+        state: str = "united_states_total",
+        frequency: str = "monthly",
+        offset: int = 0,
+        length: int = 5000,
+    ):
+        endpoint = "sum/snd/data/"
+
+        series = self._PRODUCTION_SERIES_BY_STATE[state]
+
+        payload = self._fetch_data(
+            start=start,
+            endpoint=endpoint,
+            series=series,
+            frequency=frequency,
+            offset=offset,
+            length=length,
+        )
+        return self.get_series(payload)
+
+    def consumption(
+        self,
+        start: str,
+        state: str = "united_states_total",
+        frequency: str = "monthly",
+        offset: int = 0,
+        length: int = 5000,
+    ):
+        endpoint = "sum/snd/data/"
+        series = self._CONSUMPTION_SERIES_BY_STATE[state]
+
+        payload = self._fetch_data(
+            start=start,
+            endpoint=endpoint,
+            series=series,
+            frequency=frequency,
+            offset=offset,
+            length=length,
+        )
+        return self.get_series(payload)
+
+    def imports(
+        self,
+        start: str,
+        frequency: str = "monthly",
+        country: str = "united_states_pipeline_total",
+        offset: int = 0,
+        length: int = 5000,
+    ):
+        endpoint = "sum/snd/data/"
+        try:
+            series = self._IMPORT_SERIES_BY_COUNTRY[country]
+        except KeyError:
+            raise ValueError(f"Unsupported export destination: {country}")
+
+        payload = self._fetch_data(
+            start=start,
+            endpoint=endpoint,
+            series=series,
+            frequency="monthly",
+            offset=offset,
+            length=length,
+        )
+        return self.get_series(payload)
+
+    def exports(
+        self,
+        start: str,
+        country: str = "united_states_pipeline_total",
+        offset: int = 0,
+        length: int = 5000,
+    ):
+        endpoint = "sum/snd/data/"
+        try:
+            series = self._EXPORT_SERIES_BY_COUNTRY[country]
+        except KeyError:
+            raise ValueError(f"Unsupported export destination: {country}")
+
+        payload = self._fetch_data(
+            start=start,
+            endpoint=endpoint,
+            series=series,
+            frequency="monthly",
+            offset=offset,
+            length=length,
+        )
+        return self.get_series(payload)
+
+    def futures_prices(
+        self,
+        start: str = None,
+        contract: int = 1,
+        offset: int = 0,
+        length: int = 5000,
+    ):
+        endpoint = "pri/fut/data/"
+        try:
+            series = self._FUTURES_SERIES_BY_CONTRACT[contract]
+        except KeyError:
+            raise ValueError(f"Unsupported futures contract: {contract}")
+
+        payload = self._fetch_data(
+            start=start,
+            endpoint=endpoint,
+            series=series,
+            frequency="daily",
+        )
+        return self.get_series(payload)
 
     def reserves(self):
         raise NotImplementedError
 
-    def imports(self):
-        raise NotImplementedError
-
-    def export(self):
-        raise NotImplementedError
-
-    def futures_price(self):
-        raise NotImplementedError
-
-    def consumption(self):
-        raise NotImplementedError
-
     def processing(self):
-        raise NotImplementedError
-
-    def electricity_generation(self):
         raise NotImplementedError
