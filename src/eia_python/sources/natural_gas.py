@@ -59,8 +59,8 @@ class NaturalGas(BaseSource):
         )
         return self.get_series(payload)
 
-    def spot_prices(self, *, start: str, frequency: str = "daily"):
-        endpoint = "pri/fut/data/s"  # (verify this endpoint for your intended series)
+    def spot_prices(self, start: str, frequency: str = "daily"):
+        endpoint = "pri/fut/data/s"
         series = "RNGWHHD"
         payload = self._fetch_data(
             start=start,
