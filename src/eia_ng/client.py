@@ -2,6 +2,7 @@ import os
 import textwrap
 
 from .helpers import retry_request
+from .sources.electricity import Electricity
 from .sources.natural_gas import NaturalGas
 
 
@@ -31,7 +32,7 @@ class EIAClient(object):
         self.host = "api.eia.gov"
         self.version = version
         self.natural_gas = NaturalGas(self)
-        self.oil = None
+        self.electricity = Electricity(self)
 
     def _fetch(
         self,
@@ -47,7 +48,6 @@ class EIAClient(object):
         params = {
             "api_key": self.api_key,
             "frequency": frequency,
-            "data[0]": "value",
             "facets[series][]": series,
             "start": start,
             "sort[0][column]": "period",

@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
-from typing import Any
+from abc import ABC
+from typing import Any, Dict, List, Optional, abstractmethod
 
 
 class BaseSource(ABC):
@@ -7,28 +7,45 @@ class BaseSource(ABC):
         self.client = client
         self.base_endpoint = base_endpoint.rstrip("/") + "/"
 
-    def _fetch_data(
+    def _fetch_v2(
         self,
         *,
         start: str,
         endpoint: str,
-        series: str,
         frequency: str,
+        data_fields: Optional[List[str]] = None,
+        facets: Optional[Dict[str, List[str]]] = None,
         offset: int = 0,
         length: int = 5000,
         direction: str = "desc",
-        extra_params: dict | None = None,
+        extra_params: Optional[Dict[str, Any]] = None,
     ) -> dict:
+
         full_endpoint = f"{self.base_endpoint}{endpoint.lstrip('/')}"
+
+        params: Dict[str, Any] = {}
+        if data_fields:
+            for i, f in enumerate(data_fields):
+                params[f"data[{i}]"] = f
+
+        if facets:
+            for facet_name, values in facets.items():
+                # allow a single string to be passed accidentally
+                if isinstance(values, str):  # type: ignore
+                    values = [values]  # type: ignore
+                params[f"facets[{facet_name}][]"] = values
+
+        if extra_params:
+            params.update(extra_params)
+
         return self.client._fetch(
             start=start,
             endpoint=full_endpoint,
-            series=series,
             frequency=frequency,
             offset=offset,
             length=length,
             direction=direction,
-            extra_params=extra_params,
+            extra_params=params,
         )
 
     def get_series(self, payload: dict) -> list[dict[str, Any]]:
@@ -37,39 +54,3 @@ class BaseSource(ABC):
         Centralizing this keeps source methods thin.
         """
         return (payload.get("response") or {}).get("data") or []
-
-    @abstractmethod
-    def imports(self):
-        pass
-
-    @abstractmethod
-    def exports(self):
-        pass
-
-    @abstractmethod
-    def reserves(self):
-        pass
-
-    @abstractmethod
-    def production(self):
-        pass
-
-    @abstractmethod
-    def storage(self):
-        pass
-
-    @abstractmethod
-    def spot_prices(self):
-        pass
-
-    @abstractmethod
-    def futures_prices(self):
-        pass
-
-    @abstractmethod
-    def consumption(self):
-        pass
-
-    @abstractmethod
-    def processing(self):
-        pass
