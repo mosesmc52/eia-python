@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Any, Dict, List, Optional, abstractmethod
+from typing import Any, Dict, List, Optional
 
 
 class BaseSource(ABC):
@@ -9,7 +9,6 @@ class BaseSource(ABC):
 
     def _fetch_v2(
         self,
-        *,
         start: str,
         endpoint: str,
         frequency: str,

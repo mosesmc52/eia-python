@@ -1,7 +1,7 @@
 # tests/test_electricity_generation.py
 from __future__ import annotations
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import pytest
 
@@ -41,8 +41,8 @@ def _install_spies(monkeypatch, elec, *, fetch_return=None, series_return=None):
         start: str,
         endpoint: str,
         frequency: str,
-        data_fields: List[str] | None = None,  # type: ignore[valid-type]
-        facets: Dict[str, List[str]] | None = None,  # type: ignore[valid-type]
+        data_fields: Optional[List[str]] = None,
+        facets: Optional[Dict[str, List[str]]] = None,
         offset: int = 0,
         length: int = 5000,
         direction: str = "desc",

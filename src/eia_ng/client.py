@@ -1,5 +1,6 @@
 import os
 import textwrap
+from typing import Any, Dict, Optional
 
 from .helpers import retry_request
 from .sources.electricity import Electricity
@@ -43,7 +44,7 @@ class EIAClient(object):
         offset=0,
         length=5000,
         direction="desc",
-        extra_params: dict | None = None,
+        extra_params: Optional[Dict[str, Any]] = None,
     ):
         params = {
             "api_key": self.api_key,

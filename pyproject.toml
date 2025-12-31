@@ -1,13 +1,28 @@
 [tool.poetry]
 name = "eia-ng"
 version = "0.1.0"
-description = ""
+description = "A Python client for the EIA v2 natural gas API with structured access to production, storage, flows, prices, and gas-fired electricity generation."
 authors = ["Moses McCall <mosesmc52@gmail.com>"]
 readme = "README.md"
+license = "MIT"
 packages = [{ include = "eia_ng", from = "src" }]
+homepage = "https://github.com/mosesmc52/eia-ng"
+repository = "https://github.com/mosesmc52/eia-ng"
+
+keywords = ["EIA", "energy", "natural gas", "electricity", "API", "time series"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
+]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.9,<4.0"
 requests = "^2.32.5"
 python-dotenv = "^1.2.1"
 
