@@ -33,7 +33,7 @@ class NaturalGas(BaseSource):
                 f"Invalid region='{region}'. Valid: {valid}, or 'all'."
             ) from e
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -53,7 +53,7 @@ class NaturalGas(BaseSource):
     ):
         endpoint = "pri/fut/data/s"
         series = "RNGWHHD"
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -74,7 +74,7 @@ class NaturalGas(BaseSource):
 
         series = PRODUCTION_SERIES_BY_STATE[state]
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -96,7 +96,7 @@ class NaturalGas(BaseSource):
         endpoint = "sum/snd/data/"
         series = CONSUMPTION_SERIES_BY_STATE[state]
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -121,7 +121,7 @@ class NaturalGas(BaseSource):
         except KeyError:
             raise ValueError(f"Unsupported export destination: {country}")
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -146,7 +146,7 @@ class NaturalGas(BaseSource):
         except KeyError:
             raise ValueError(f"Unsupported export destination: {country}")
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,
@@ -171,7 +171,7 @@ class NaturalGas(BaseSource):
         except KeyError:
             raise ValueError(f"Unsupported futures contract: {contract}")
 
-        payload = self._fetch_data_v2(
+        payload = self._fetch_v2(
             start=start,
             endpoint=endpoint,
             series=series,

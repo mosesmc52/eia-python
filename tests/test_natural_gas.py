@@ -34,7 +34,7 @@ def _install_spies(monkeypatch, ng, *, fetch_return=None, series_return=None):
     if series_return is None:
         series_return = [{"period": "2020-01", "value": 1.0}]
 
-    def _fetch_data_v2(
+    def _fetch_v2(
         *, start, endpoint, series, frequency, data_fields, offset=0, length=5000
     ):
         calls["fetch"] = {
@@ -52,7 +52,7 @@ def _install_spies(monkeypatch, ng, *, fetch_return=None, series_return=None):
         calls["series_payload"] = payload
         return series_return
 
-    monkeypatch.setattr(ng, "_fetch_data_v2", _fetch_data_v2, raising=False)
+    monkeypatch.setattr(ng, "_fetch_v2", _fetch_v2, raising=False)
     monkeypatch.setattr(ng, "get_series", get_series, raising=False)
 
     return calls, series_return

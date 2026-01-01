@@ -12,6 +12,7 @@ class BaseSource(ABC):
         start: str,
         endpoint: str,
         frequency: str,
+        series: str,
         data_fields: Optional[List[str]] = None,
         facets: Optional[Dict[str, List[str]]] = None,
         offset: int = 0,
@@ -40,6 +41,7 @@ class BaseSource(ABC):
         return self.client._fetch(
             start=start,
             endpoint=full_endpoint,
+            series=series,
             frequency=frequency,
             offset=offset,
             length=length,
