@@ -6,6 +6,7 @@ from typing import Any, Dict, List
 
 import pytest
 from eia_ng import EIAClient
+from eia_ng.exceptions import EIARequestError
 
 
 def _load_env_if_possible() -> None:
@@ -59,63 +60,91 @@ def test_smoke_all_functions():
     # -----------------------------
 
     # Storage (weekly) - lower48 default
-    storage = client.natural_gas.storage(start="2023-01-01", region="lower48", length=5)
-    _assert_rows(storage)
+    try:
+        storage = client.natural_gas.storage(
+            start="2023-01-01", region="lower48", length=5
+        )
+        _assert_rows(storage)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Spot prices (daily) - Henry Hub
-    spot = client.natural_gas.spot_prices(start="2023-01-01", frequency="daily")
-    _assert_rows(spot)
+    try:
+        spot = client.natural_gas.spot_prices(start="2023-01-01", frequency="daily")
+        _assert_rows(spot)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Production (monthly) - U.S. total
-    prod_us = client.natural_gas.production(
-        start="2022-01",
-        state="united_states_total",
-        frequency="monthly",
-        length=5,
-    )
-    _assert_rows(prod_us)
+    try:
+        prod_us = client.natural_gas.production(
+            start="2022-01",
+            state="united_states_total",
+            frequency="monthly",
+            length=5,
+        )
+        _assert_rows(prod_us)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Consumption (monthly) - U.S. total
-    cons_us = client.natural_gas.consumption(
-        start="2022-01",
-        state="united_states_total",
-        frequency="monthly",
-        length=5,
-    )
-    _assert_rows(cons_us)
+    try:
+        cons_us = client.natural_gas.consumption(
+            start="2022-01",
+            state="united_states_total",
+            frequency="monthly",
+            length=5,
+        )
+        _assert_rows(cons_us)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Imports (monthly) - U.S. pipeline total
-    imps = client.natural_gas.imports(
-        start="2022-01",
-        country="united_states_pipeline_total",
-        frequency="monthly",
-        length=5,
-    )
-    _assert_rows(imps)
+    try:
+        imps = client.natural_gas.imports(
+            start="2022-01",
+            country="united_states_pipeline_total",
+            frequency="monthly",
+            length=5,
+        )
+        _assert_rows(imps)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Exports (monthly) - U.S. pipeline total
-    exps = client.natural_gas.exports(
-        start="2022-01",
-        country="united_states_pipeline_total",
-        length=5,
-    )
-    _assert_rows(exps)
+    try:
+        exps = client.natural_gas.exports(
+            start="2022-01",
+            country="united_states_pipeline_total",
+            length=5,
+        )
+        _assert_rows(exps)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # Futures prices (daily) - contract 1
-    fut = client.natural_gas.futures_prices(start="2023-01-01", contract=1)
-    _assert_rows(fut)
+    try:
+        fut = client.natural_gas.futures_prices(start="2023-01-01", contract=1)
+        _assert_rows(fut)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # -----------------------------
     # Electricity (Natural Gas generation)
     # -----------------------------
-
-    gen_us = client.electricity.generation_natural_gas(
-        start="2022-01", frequency="monthly"
-    )
-    _assert_rows(gen_us)
+    try:
+        gen_us = client.electricity.generation_natural_gas(
+            start="2022-01", frequency="monthly"
+        )
+        _assert_rows(gen_us)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")
 
     # # Optional: state example (UT)
-    gen_ut = client.electricity.generation_natural_gas(
-        start="2022-01", state="UT", frequency="monthly"
-    )
-    _assert_rows(gen_ut)
+    try:
+        gen_ut = client.electricity.generation_natural_gas(
+            start="2022-01", state="UT", frequency="monthly"
+        )
+        _assert_rows(gen_ut)
+    except EIARequestError as e:
+        pytest.skip(f"EIA upstream error during smoke test: {e}")

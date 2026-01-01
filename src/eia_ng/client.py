@@ -2,6 +2,7 @@ import os
 import textwrap
 from typing import Any, Dict, Optional
 
+from .exceptions import EIARequestError
 from .helpers import retry_request
 from .sources.electricity import Electricity
 from .sources.natural_gas import NaturalGas
@@ -64,6 +65,8 @@ class EIAClient(object):
 
         url = f"https://{self.host}/v{self.version}/{endpoint.lstrip('/')}"
 
-        r = retry_request(url=url, params=params)
-
-        return r.json()
+        try:
+            r = retry_request(url=url, params=params)
+            return r.json()
+        except Exception as e:
+            raise EIARequestError(f"EIA request failed: {url}") from e

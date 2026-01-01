@@ -1,33 +1,59 @@
+from __future__ import annotations
+
+import random
 import time
+from typing import Any, Dict, Optional
 
 import requests
+from requests import Response
 from requests.exceptions import RequestException
+
+RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 
 
 def retry_request(
-    url,
-    max_retries=3,
-    backoff_factor=2,
-    params=None,
-    headers={"accept": "application/json"},
-):
-    retries = 0
-    retry_delay = 1
+    *,
+    url: str,
+    params: Optional[Dict[str, Any]] = None,
+    headers: Optional[Dict[str, str]] = None,
+    max_retries: int = 5,
+    backoff_factor: float = 1.5,
+    timeout: int = 30,
+) -> Response:
+    """
+    Return a requests.Response or raise RequestException after retries.
 
-    while retries < max_retries:
+    Retries on network errors and retryable HTTP status codes.
+    """
+    headers = headers or {"accept": "application/json"}
+    delay = 1.0
+    last_exc: Optional[Exception] = None
+
+    for attempt in range(1, max_retries + 1):
         try:
+            r = requests.get(url, headers=headers, params=params, timeout=timeout)
 
-            r = requests.get(url, headers=headers, params=params, timeout=30)
-            # Check if the request was successful
-            r.raise_for_status()
+            # Retry on known transient statuses
+            if r.status_code in RETRYABLE_STATUS:
+                last_exc = RequestException(
+                    f"Retryable HTTP {r.status_code} on attempt {attempt}: {r.text[:200]}"
+                )
+            else:
+                r.raise_for_status()
+                return r
 
-            return r
         except RequestException as e:
-            print(f"Request failed: {str(e)}")
+            last_exc = e
 
-        retries += 1
-        retry_delay *= backoff_factor
-        time.sleep(retry_delay)
+        # If final attempt, break and raise
+        if attempt == max_retries:
+            break
 
-    # Max retries exceeded
-    return None
+        # Exponential backoff with jitter
+        sleep_for = delay * (backoff_factor ** (attempt - 1))
+        sleep_for += random.uniform(0, 0.25 * sleep_for)
+        time.sleep(sleep_for)
+
+    # If we got here, everything failed
+    assert last_exc is not None
+    raise last_exc
