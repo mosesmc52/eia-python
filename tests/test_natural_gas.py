@@ -146,7 +146,7 @@ def test_imports_default_united_states_pipeline_total(monkeypatch, ng):
     out = ng.imports(start="2020-01", country="united_states_pipeline_total")
     assert out == expected
 
-    assert calls["fetch"]["endpoint"] == "sum/snd/data/"
+    assert calls["fetch"]["endpoint"] == "move/impc/data/"
     assert calls["fetch"]["series"] == "N9102US2"
     assert calls["fetch"]["frequency"] == "monthly"
     assert calls["fetch"]["data_fields"] == ["value"]
@@ -172,7 +172,7 @@ def test_exports_default_united_states_pipeline_total(monkeypatch, ng):
     )
     assert out == expected
 
-    assert calls["fetch"]["endpoint"] == "sum/snd/data/"
+    assert calls["fetch"]["endpoint"] == "move/expc/data/"
     assert calls["fetch"]["series"] == "N9132US2"
     assert calls["fetch"]["frequency"] == "monthly"
     assert calls["fetch"]["offset"] == 7
