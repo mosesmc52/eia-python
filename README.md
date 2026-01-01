@@ -14,7 +14,7 @@ https://www.eia.gov/opendata/documentation.php
 ## Installation
 
 ```bash
-pip install eia-ng
+pip install eia-ng-client
 ```
 
 ## 3. API key setup
