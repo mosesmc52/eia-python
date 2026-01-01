@@ -147,10 +147,9 @@ jobs:
     name: Integration (EIA API)
     runs-on: ubuntu-latest
     needs: test
-    # Promote the secret into env, then use env.* in the if-condition (valid context)
     env:
       EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
-    if: env.EIA_API_KEY != ''
+
     steps:
       - uses: actions/checkout@v4
 
@@ -168,5 +167,10 @@ jobs:
       - name: Install deps
         run: poetry install --no-interaction
 
+      - name: Skip (no EIA_API_KEY configured)
+        if: env.EIA_API_KEY == ''
+        run: echo "EIA_API_KEY is not set; skipping integration tests."
+
       - name: Run integration smoke tests
+        if: env.EIA_API_KEY != ''
         run: poetry run pytest -q -m integration
