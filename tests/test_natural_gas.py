@@ -94,7 +94,7 @@ def test_spot_prices_calls_correct_endpoint_and_series(monkeypatch, ng):
     out = ng.spot_prices(start="2020-01-01", frequency="daily")
     assert out == expected
 
-    assert calls["fetch"]["endpoint"] == "pri/fut/data/s"
+    assert calls["fetch"]["endpoint"] == "pri/fut/data/"
     assert calls["fetch"]["series"] == "RNGWHHD"
     assert calls["fetch"]["frequency"] == "daily"
     assert calls["fetch"]["data_fields"] == ["value"]
