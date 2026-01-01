@@ -51,7 +51,7 @@ class NaturalGas(BaseSource):
         offset: int = 0,
         length: int = 5000,
     ):
-        endpoint = "pri/fut/data/s"
+        endpoint = "pri/fut/data/"
         series = "RNGWHHD"
         payload = self._fetch_v2(
             start=start,
