@@ -15,7 +15,6 @@ class Electricity(BaseSource):
 
     def generation(
         self,
-        *,
         start: str,
         frequency: str = "monthly",
         fueltypeid: str = "NG",
@@ -52,7 +51,6 @@ class Electricity(BaseSource):
 
     def generation_natural_gas(
         self,
-        *,
         start: str,
         frequency: str = "monthly",
         state: Optional[str] = None,

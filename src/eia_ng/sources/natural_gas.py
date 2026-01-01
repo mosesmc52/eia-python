@@ -115,7 +115,7 @@ class NaturalGas(BaseSource):
         offset: int = 0,
         length: int = 5000,
     ):
-        endpoint = "sum/snd/data/"
+        endpoint = "move/impc/data/"
         try:
             series = IMPORT_SERIES_BY_COUNTRY[country]
         except KeyError:
@@ -140,7 +140,7 @@ class NaturalGas(BaseSource):
         offset: int = 0,
         length: int = 5000,
     ):
-        endpoint = "sum/snd/data/"
+        endpoint = "move/expc/data/"
         try:
             series = EXPORT_SERIES_BY_COUNTRY[country]
         except KeyError:

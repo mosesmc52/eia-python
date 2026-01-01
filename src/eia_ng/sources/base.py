@@ -12,7 +12,7 @@ class BaseSource(ABC):
         start: str,
         endpoint: str,
         frequency: str,
-        series: str,
+        series: str = None,
         data_fields: Optional[List[str]] = None,
         facets: Optional[Dict[str, List[str]]] = None,
         offset: int = 0,

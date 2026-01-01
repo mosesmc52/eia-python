@@ -49,7 +49,6 @@ class EIAClient(object):
         params = {
             "api_key": self.api_key,
             "frequency": frequency,
-            "facets[series][]": series,
             "start": start,
             "sort[0][column]": "period",
             "sort[0][direction]": direction,
@@ -57,10 +56,14 @@ class EIAClient(object):
             "length": length,
         }
 
+        if series:
+            params.update({"facets[series][]": series})
+
         if extra_params:
             params.update(extra_params)
 
         url = f"https://{self.host}/v{self.version}/{endpoint.lstrip('/')}"
 
         r = retry_request(url=url, params=params)
+
         return r.json()
