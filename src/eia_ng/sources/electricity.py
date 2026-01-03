@@ -16,6 +16,7 @@ class Electricity(BaseSource):
     def generation(
         self,
         start: str,
+        end: str = None,
         frequency: str = "monthly",
         fueltypeid: str = "NG",
         locations: Optional[List[str]] = None,
@@ -36,6 +37,7 @@ class Electricity(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint="electric-power-operational-data/data/",
             frequency=frequency,
             data_fields=["generation"],
@@ -52,6 +54,7 @@ class Electricity(BaseSource):
     def generation_natural_gas(
         self,
         start: str,
+        end: str = None,
         frequency: str = "monthly",
         state: Optional[str] = None,
         sectorid: str = "99",
@@ -68,6 +71,7 @@ class Electricity(BaseSource):
         locations = ["US"] if state is None else [state.upper()]
         return self.generation(
             start=start,
+            end=end,
             frequency=frequency,
             fueltypeid="NG",
             locations=locations,

@@ -41,6 +41,7 @@ class EIAClient(object):
         start,
         endpoint,
         series,
+        end=None,
         frequency="daily",
         offset=0,
         length=5000,
@@ -56,6 +57,9 @@ class EIAClient(object):
             "offset": offset,
             "length": length,
         }
+
+        if end:
+            params.update({"end": end})
 
         if series:
             params.update({"facets[series][]": series})

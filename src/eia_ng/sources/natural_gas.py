@@ -18,6 +18,7 @@ class NaturalGas(BaseSource):
     def storage(
         self,
         start: str,
+        end: str = None,
         region: str = "lower48",
         frequency: str = "weekly",
         offset: int = 0,
@@ -35,6 +36,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -47,6 +49,7 @@ class NaturalGas(BaseSource):
     def spot_prices(
         self,
         start: str,
+        end: str = None,
         frequency: str = "daily",
         offset: int = 0,
         length: int = 5000,
@@ -55,6 +58,7 @@ class NaturalGas(BaseSource):
         series = "RNGWHHD"
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -65,6 +69,7 @@ class NaturalGas(BaseSource):
     def production(
         self,
         start: str,
+        end: str = None,
         state: str = "united_states_total",
         frequency: str = "monthly",
         offset: int = 0,
@@ -76,6 +81,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -88,6 +94,7 @@ class NaturalGas(BaseSource):
     def consumption(
         self,
         start: str,
+        end: str = None,
         state: str = "united_states_total",
         frequency: str = "monthly",
         offset: int = 0,
@@ -98,6 +105,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -110,6 +118,7 @@ class NaturalGas(BaseSource):
     def imports(
         self,
         start: str,
+        end: str = None,
         frequency: str = "monthly",
         country: str = "united_states_pipeline_total",
         offset: int = 0,
@@ -123,6 +132,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -135,6 +145,7 @@ class NaturalGas(BaseSource):
     def exports(
         self,
         start: str,
+        end: str = None,
         frequency: str = "monthly",
         country: str = "united_states_pipeline_total",
         offset: int = 0,
@@ -148,6 +159,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             frequency=frequency,
@@ -160,6 +172,7 @@ class NaturalGas(BaseSource):
     def futures_prices(
         self,
         start: str = None,
+        end: str = None,
         contract: int = 1,
         frequency: str = "daily",
         offset: int = 0,
@@ -173,6 +186,7 @@ class NaturalGas(BaseSource):
 
         payload = self._fetch_v2(
             start=start,
+            end=end,
             endpoint=endpoint,
             series=series,
             data_fields=["value"],

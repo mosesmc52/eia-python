@@ -41,6 +41,7 @@ def _install_spies(monkeypatch, elec, *, fetch_return=None, series_return=None):
         start: str,
         endpoint: str,
         frequency: str,
+        end: str = None,
         data_fields: Optional[List[str]] = None,
         facets: Optional[Dict[str, List[str]]] = None,
         offset: int = 0,

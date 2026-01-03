@@ -35,13 +35,14 @@ def _install_spies(monkeypatch, ng, *, fetch_return=None, series_return=None):
         series_return = [{"period": "2020-01", "value": 1.0}]
 
     def _fetch_v2(
-        *, start, endpoint, series, frequency, data_fields, offset=0, length=5000
+        *, start, endpoint, series, frequency, end, data_fields, offset=0, length=5000
     ):
         calls["fetch"] = {
             "start": start,
             "endpoint": endpoint,
             "series": series,
             "frequency": frequency,
+            "end": end,
             "data_fields": data_fields,
             "offset": offset,
             "length": length,
