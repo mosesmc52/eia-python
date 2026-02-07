@@ -114,6 +114,60 @@ futures = client.natural_gas.futures_prices(
 )
 ```
 
+### Exploration & Reserves (Annual)
+
+The `exploration_and_reserves` method provides access to EIA **Exploration & Reserves**
+(Form-23) data. This data is **annual only** and represents reserve stocks or expected
+future production, not current output.
+
+Supported categories:
+
+- Proved associated natural gas reserves (wet)
+- Proved nonassociated natural gas reserves (wet)
+- Proved natural gas plant liquids (NGL) reserves
+- Expected future production of dry natural gas
+
+#### Proved associated natural gas reserves
+
+```python
+# U.S. total proved associated natural gas reserves (annual)
+reserves_us = client.natural_gas.exploration_and_reserves(
+    start="2010",
+    resource_category="proved_associated_gas",
+)
+print(reserves_us[:3])
+
+# Texas proved associated natural gas reserves
+reserves_tx = client.natural_gas.exploration_and_reserves(
+    start="2010",
+    state="tx",
+    resource_category="proved_associated_gas",
+)
+print(reserves_tx[:3])
+
+# Pennsylvania proved nonassociated gas reserves
+pa_nonassoc = client.natural_gas.exploration_and_reserves(
+    start="2010",
+    state="pa",
+    resource_category="proved_nonassociated_gas",
+)
+
+
+# U.S. proved NGL reserves
+ngl_reserves = client.natural_gas.exploration_and_reserves(
+    start="2010",
+    resource_category="proved_ngl",
+)
+
+# Expected future production of dry natural gas (U.S.)
+efp = client.natural_gas.exploration_and_reserves(
+    start="2010",
+    resource_category="expected_future_gas_production",
+)
+```
+
+
+
 ---
 
 ## 7. Electricity generation (Natural Gas)
@@ -131,6 +185,7 @@ gen_ut = client.electricity.generation_natural_gas(
     state="UT",
 )
 ```
+
 
 
 ## Returned Data Format

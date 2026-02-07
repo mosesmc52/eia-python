@@ -5,6 +5,10 @@ from ..datasets.natural_gas_series import (
     EXPORT_SERIES_BY_COUNTRY,
     FUTURES_SERIES_BY_CONTRACT,
     IMPORT_SERIES_BY_COUNTRY,
+    NG_EFP_DRY_BY_STATE,
+    NG_PROVED_WET_ASSOC_BY_STATE,
+    NG_PROVED_WET_NONASSOC_BY_STATE,
+    NGL_PROVED_BY_STATE,
     PRODUCTION_SERIES_BY_STATE,
     STORAGE_SERIES_BY_REGION,
 )
@@ -191,5 +195,65 @@ class NaturalGas(BaseSource):
             series=series,
             data_fields=["value"],
             frequency=frequency,
+        )
+        return self.get_series(payload)
+
+    def exploration_and_reserves(
+        self,
+        start: str | None = None,
+        end: str | None = None,
+        frequency: str = "annual",  # locked default
+        offset: int = 0,
+        length: int = 5000,
+        state: str = "all",
+        resource_category: str = "proved_associated_gas",
+    ):
+        """
+        Fetch EIA Exploration & Reserves (ENR) data.
+        NOTE: ENR data is annual only.
+        """
+
+        if frequency != "annual":
+            raise ValueError(
+                f"Invalid frequency='{frequency}'. "
+                "Exploration & Reserves data is annual only."
+            )
+
+        endpoint = "enr/sum/data/"
+
+        st = (state or "all").strip().lower()
+
+        category_map = {
+            "proved_associated_gas": NG_PROVED_WET_ASSOC_BY_STATE,
+            "proved_nonassociated_gas": NG_PROVED_WET_NONASSOC_BY_STATE,
+            "proved_ngl": NGL_PROVED_BY_STATE,
+            "expected_future_gas_production": NG_EFP_DRY_BY_STATE,
+        }
+
+        if resource_category not in category_map:
+            raise ValueError(
+                f"Unsupported resource category: {resource_category}. "
+                f"Valid: {sorted(category_map.keys())}"
+            )
+
+        series_map = category_map[resource_category]
+
+        try:
+            series = series_map[st]
+        except KeyError as e:
+            raise KeyError(
+                f"Unknown state '{state}' (normalized '{st}'). "
+                "Expected 2-letter state code or 'us'/'all'."
+            ) from e
+
+        payload = self._fetch_v2(
+            start=start,
+            end=end,
+            endpoint=endpoint,
+            series=series,
+            data_fields=["value"],
+            frequency="annual",
+            offset=offset,
+            length=length,
         )
         return self.get_series(payload)

@@ -202,3 +202,143 @@ FUTURES_SERIES_BY_CONTRACT = {
     3: "RNGC3",
     4: "RNGC4",
 }
+
+
+# ===============================
+# Natural Gas – Proved Reserves
+# Wet, After Lease Separation
+# Associated-Dissolved (BCF)
+# ===============================
+
+NG_PROVED_WET_ASSOC_BY_STATE = {
+    "al": "RNGR41SAL_1",  # Alabama
+    "ak": "RNGR41SAK_1",  # Alaska
+    "ar": "RNGR41SAR_1",  # Arkansas
+    "ca": "RNGR41SCA_1",  # California
+    "co": "RNGR41SCO_1",  # Colorado
+    "fl": "RNGR41SFL_1",  # Florida
+    "ks": "RNGR41SKS_1",  # Kansas
+    "ky": "RNGR41SKY_1",  # Kentucky
+    "la": "RNGR41SLA_1",  # Louisiana
+    "mi": "RNGR41SMI_1",  # Michigan
+    "ms": "RNGR41SMS_1",  # Mississippi
+    "mt": "RNGR41SMT_1",  # Montana
+    "nd": "RNGR41SND_1",  # North Dakota
+    "nm": "RNGR41SNM_1",  # New Mexico
+    "ny": "RNGR41SNY_1",  # New York
+    "oh": "RNGR41SOH_1",  # Ohio
+    "ok": "RNGR41SOK_1",  # Oklahoma
+    "pa": "RNGR41SPA_1",  # Pennsylvania
+    "tx": "RNGR41STX_1",  # Texas
+    "ut": "RNGR41SUT_1",  # Utah
+    "va": "RNGR41SVA_1",  # Virginia
+    "wv": "RNGR41SWV_1",  # West Virginia
+    "wy": "RNGR41SWY_1",  # Wyoming
+    # U.S. total
+    "us": "RNGR41NUS_1",
+    "all": "RNGR41NUS_1",
+}
+
+# ===============================
+# Natural Gas – Proved Reserves
+# Wet, After Lease Separation
+# Nonassociated (BCF)
+# ===============================
+
+NG_PROVED_WET_NONASSOC_BY_STATE = {
+    "al": "RNGR31SAL_1",  # Alabama
+    "ak": "RNGR31SAK_1",  # Alaska
+    "ar": "RNGR31SAR_1",  # Arkansas
+    "ca": "RNGR31SCA_1",  # California
+    "co": "RNGR31SCO_1",  # Colorado
+    "fl": "RNGR31SFL_1",  # Florida
+    "ks": "RNGR31SKS_1",  # Kansas
+    "ky": "RNGR31SKY_1",  # Kentucky
+    "la": "RNGR31SLA_1",  # Louisiana
+    "mi": "RNGR31SMI_1",  # Michigan
+    "ms": "RNGR31SMS_1",  # Mississippi
+    "mt": "RNGR31SMT_1",  # Montana
+    "nd": "RNGR31SND_1",  # North Dakota
+    "nm": "RNGR31SNM_1",  # New Mexico
+    "ny": "RNGR31SNY_1",  # New York
+    "oh": "RNGR31SOH_1",  # Ohio
+    "ok": "RNGR31SOK_1",  # Oklahoma
+    "pa": "RNGR31SPA_1",  # Pennsylvania
+    "tx": "RNGR31STX_1",  # Texas
+    "ut": "RNGR31SUT_1",  # Utah
+    "va": "RNGR31SVA_1",  # Virginia
+    "wv": "RNGR31SWV_1",  # West Virginia
+    "wy": "RNGR31SWY_1",  # Wyoming
+    # U.S. total
+    "us": "RNGR31NUS_1",
+    "all": "RNGR31NUS_1",
+}
+
+# ===============================
+# Natural Gas Plant Liquids
+# Proved Reserves (MMBbl)
+# ===============================
+
+NGL_PROVED_BY_STATE = {
+    "al": "RL2R01SAL_1",  # Alabama
+    "ak": "RL2R01SAK_1",  # Alaska
+    "ar": "RL2R01SAR_1",  # Arkansas
+    "ca": "RL2R01SCA_1",  # California
+    "co": "RL2R01SCO_1",  # Colorado
+    "fl": "RL2R01SFL_1",  # Florida
+    "ks": "RL2R01SKS_1",  # Kansas
+    "ky": "RL2R01SKY_1",  # Kentucky
+    "la": "RL2R01SLA_1",  # Louisiana
+    "mi": "RL2R01SMI_1",  # Michigan
+    "ms": "RL2R01SMS_1",  # Mississippi
+    "mt": "RL2R01SMT_1",  # Montana
+    "nd": "RL2R01SND_1",  # North Dakota
+    "nm": "RL2R01SNM_1",  # New Mexico
+    "ny": "RL2R01SNY_1",  # New York
+    "oh": "RL2R01SOH_1",  # Ohio
+    "ok": "RL2R01SOK_1",  # Oklahoma
+    "pa": "RL2R01SPA_1",  # Pennsylvania
+    "tx": "RL2R01STX_1",  # Texas
+    "ut": "RL2R01SUT_1",  # Utah
+    "va": "RL2R01SVA_1",  # Virginia
+    "wv": "RL2R01SWV_1",  # West Virginia
+    "wy": "RL2R01SWY_1",  # Wyoming
+    # U.S. total
+    "us": "RL2R01NUS_1",
+    "all": "RL2R01NUS_1",
+}
+
+
+# ===============================
+# Natural Gas – Expected Future Production
+# Dry Natural Gas (BCF)
+# ===============================
+
+NG_EFP_DRY_BY_STATE = {
+    "al": "RNGR11SAL_1",  # Alabama
+    "ak": "RNGR11SAK_1",  # Alaska
+    "ar": "RNGR11SAR_1",  # Arkansas
+    "ca": "RNGR11SCA_1",  # California
+    "co": "RNGR11SCO_1",  # Colorado
+    "fl": "RNGR11SFL_1",  # Florida
+    "ks": "RNGR11SKS_1",  # Kansas
+    "ky": "RNGR11SKY_1",  # Kentucky
+    "la": "RNGR11SLA_1",  # Louisiana
+    "mi": "RNGR11SMI_1",  # Michigan
+    "ms": "RNGR11SMS_1",  # Mississippi
+    "mt": "RNGR11SMT_1",  # Montana
+    "nd": "RNGR11SND_1",  # North Dakota
+    "nm": "RNGR11SNM_1",  # New Mexico
+    "ny": "RNGR11SNY_1",  # New York
+    "oh": "RNGR11SOH_1",  # Ohio
+    "ok": "RNGR11SOK_1",  # Oklahoma
+    "pa": "RNGR11SPA_1",  # Pennsylvania
+    "tx": "RNGR11STX_1",  # Texas
+    "ut": "RNGR11SUT_1",  # Utah
+    "va": "RNGR11SVA_1",  # Virginia
+    "wv": "RNGR11SWV_1",  # West Virginia
+    "wy": "RNGR11SWY_1",  # Wyoming
+    # U.S. total
+    "us": "RNGR11NUS_1",
+    "all": "RNGR11NUS_1",
+}
