@@ -200,8 +200,8 @@ class NaturalGas(BaseSource):
 
     def exploration_and_reserves(
         self,
-        start: str | None = None,
-        end: str | None = None,
+        start: str = None,
+        end: str = None,
         frequency: str = "annual",  # locked default
         offset: int = 0,
         length: int = 5000,

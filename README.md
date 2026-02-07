@@ -201,6 +201,20 @@ df = pd.DataFrame(production)
 
 ```
 
+---
+
+## 🧪 Testing
+
+This project uses **pytest** for unit and integration tests and runs inside the Poetry virtual environment.
+
+Run the full test suite with:
+
+```bash
+poetry run pytest -q
+
+```
+
+
 ## License
 
 MIT
